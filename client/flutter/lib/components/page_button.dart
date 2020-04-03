@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../constants.dart';
@@ -43,21 +44,29 @@ class PageButton extends StatelessWidget {
             crossAxisAlignment: this.crossAxisAlignment,
             mainAxisAlignment: this.mainAxisAlignment,
             children: <Widget>[
-              Text(
-                this.title,
-                textScaleFactor: 1.0 + 1.0 * contentScale(context),
-                textAlign: TextAlign.left,
-                style: titleStyle ?? TextStyle(fontWeight: FontWeight.w700),
+              Flexible(
+                child: AutoSizeText(
+                  this.title,
+                  textScaleFactor: 1.0 + 1.0 * contentScale(context),
+                  textAlign: TextAlign.left,
+                  style: titleStyle ?? TextStyle(fontWeight: FontWeight.w700),
+                  minFontSize: 11.2,
+                  stepGranularity: 0.7,
+                ),
               ),
               // Makes sure text is centered properly when no description is provided
               SizedBox(height: description.isNotEmpty ? 4 : 0),
               this.description.isNotEmpty
-                  ? Text(
-                      this.description,
-                      textAlign: TextAlign.left,
-                      textScaleFactor: 0.9 + 0.5 * contentScale(context),
-                      style: TextStyle(fontWeight: FontWeight.w400),
-                    )
+                  ? Flexible(
+                    child: AutoSizeText(
+                        this.description,
+                        textAlign: TextAlign.left,
+                        textScaleFactor: 0.9 + 0.5 * contentScale(context),
+                        style: TextStyle(fontWeight: FontWeight.w400),
+                        minFontSize: 11.2,
+                        stepGranularity: 0.7,
+                      ),
+                  )
                   : Container()
             ],
           )),
